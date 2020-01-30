@@ -1,0 +1,52 @@
+.blog_header {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 5rem;
+    background: url('../../assets/images/anwer.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .overlay {
+        background-color: rgba(28, 53, 119, 0.93);
+        padding: 2% 5%;
+        margin: 0 auto;
+        width:100%;
+        height:100%;
+    }
+
+    .header_blog_title {
+        h1 {
+            text-align: center;
+            margin-top: 18rem;
+            font-size: 2.5rem;
+            color: white;
+            letter-spacing: 1px;
+        }
+    }
+}
+
+.blog_body {
+    width: 40%;
+    margin: 0 auto;
+    overflow: hidden;
+    padding-bottom: 3rem;
+
+    .blog_image {
+        width: 100%;
+        height: 400px;
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .blog_body_details {
+        width: 100%;
+
+        i {
+            cursor: pointer;
+        }
+    }
+}

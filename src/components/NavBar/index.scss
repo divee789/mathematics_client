@@ -1,0 +1,56 @@
+  .main_nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      font-family: Sailec;
+      align-items: center;
+      transition: all 0.5s linear;
+      z-index: 999999;
+      max-width: 1600px;
+
+      .logo {
+          font-size: 1.5rem;
+          z-index: 5;
+          cursor:pointer;
+      }
+
+      a {
+          text-decoration: none;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 15px;
+          min-height: 36px;
+          color: white;
+          border-radius: 5px;
+          padding: 5px 0;
+          line-height: 36px;
+          padding-left: 1.7em;
+          padding-right: 1.7em;
+          position: relative;
+          transition: all 0.3s;
+          margin-left: 30px;
+      }
+
+      .auth {
+          a {
+              color: black;
+              background-color: #fff;
+          }
+      }
+
+      .nav_item {
+          display: inline-block;
+      }
+
+      .sign-in {
+          background-color: transparent;
+          border: 1px solid var(--accent-color);
+          margin-right: 20px;
+      }
+
+      .register {
+          background: var(--accent-color);
+          border: none;
+          color: white;
+      }
+  }
