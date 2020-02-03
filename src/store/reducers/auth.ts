@@ -35,6 +35,7 @@ const authReducer = (state = initialState, action: any) => {
                 isAuth: true,
                 processing: false,
                 user: action.user.user,
+                error: null
             };
         case actionTypes.authConstants.LOGOUT:
             return {
@@ -43,6 +44,7 @@ const authReducer = (state = initialState, action: any) => {
                 isAuth: false,
                 processing: false,
                 user: null,
+                error: null
             };
 
         case actionTypes.authConstants.SIGNUP_REQUEST:
@@ -66,6 +68,7 @@ const authReducer = (state = initialState, action: any) => {
                 isAuth: true,
                 processing: false,
                 user: action.user.user,
+                error: null
             };
         default:
             return state

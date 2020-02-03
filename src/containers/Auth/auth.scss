@@ -1,3 +1,11 @@
+.error_message {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    background-color: rgba(165, 78, 78, 0.5);
+    color: white;
+}
+
 .page_content {
     min-height: 400px;
     // background-image: url(../../assets/images/auth-section-bottom.png);
@@ -53,11 +61,13 @@
 
         .input-container {
             margin-bottom: 2rem;
-            .error{
-                color:#0A2472;
+
+            .error {
+                color: white;
                 padding: 10px 5px;
-                border:3px solid red;
-                margin-top:1rem;
+                border: 3px solid red;
+                background-color: rgba(165, 78, 78, 0.5);
+                margin-top: 1rem;
                 border-radius: 5px;
             }
         }

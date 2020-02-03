@@ -1,2 +1,2 @@
 export { get_level_courses } from './course'
-export { login, signup, update } from './auth'
+export { login, signup, update, logout } from './auth'

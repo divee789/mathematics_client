@@ -29,7 +29,7 @@ export function get_level_courses(level: number) {
             dispatch(success(course))
         } catch (error) {
             if (error instanceof APIServiceError) {
-                console.log(error);
+                console.log('error in getting course', error);
                 dispatch(failure(error));
                 throw error.response.data;
             }

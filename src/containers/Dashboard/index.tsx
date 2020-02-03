@@ -1,5 +1,7 @@
-import React from 'react';
-import { Route, Switch, Redirect, useRouteMatch, NavLink,withRouter } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { get_level_courses } from "../../store/actions"
+import { Route, Switch, Redirect, useRouteMatch, NavLink, withRouter } from 'react-router-dom';
 
 import './index.scss'
 import Overview from './Routes/Overview';
@@ -7,26 +9,44 @@ import Courses from './Routes/Courses'
 import Account from './Routes/Account'
 
 
-const Dashboard = (props:any) => {
+const Dashboard = (props: any) => {
+
+    const dispatch = useDispatch()
+    const { user } = useSelector((state: any) => state.auth)
+    useEffect(() => {
+        const check = async () => {
+            try {
+                await dispatch(get_level_courses(user.level));
+            } catch (error) {
+                // if refresh token has expired, dispatch LOGOUT THINGS
+                console.log('error', error);
+                throw error;
+            }
+        };
+        check()
+    }, [dispatch]);
     let { path, url } = useRouteMatch();
+
+
     return (
         <section className='dashboard_main'>
             <div className='menu'>
                 <div className="sidenav">
                     <div className="sidenav_menu">
                         <div className='user_info'>
-                            <p>
+                            {/* <p>
 
                                 <span className="logo-text" onClick={() => {
                                     props.history.push('/');
                                 }}>Mathletes</span>
 
-                            </p>
-                            <p className='date'>{new Date().toLocaleString()}</p>
+                            </p> */}
                             <p className="greet_user">
                                 Hello {' '}
                                 <span className="username">PSC1607742</span>
                             </p>
+                            <p className='date'>{new Date().toLocaleString()}</p>
+
                         </div>
                         <div className="sidenav-list">
                             <NavLink to={`${url}/overview`}>

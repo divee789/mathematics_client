@@ -6,9 +6,9 @@ import { Provider } from 'react-redux';
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 //Persistence
 import { PersistGate } from 'redux-persist/lib/integration/react';
-import { persistStore } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
-// import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
 
 //TODO
@@ -33,12 +33,12 @@ const rootReducer = combineReducers({
     course: courseReducer
 })
 
-// const persistConfig = {
-//     key: 'root',
-//     storage: storage,
-//     stateReconciler: autoMergeLevel2,
-//     blacklist: []// see "Merge Process" section for details.
-// };
+const persistConfig = {
+    key: 'root',
+    storage: storage,
+    stateReconciler: autoMergeLevel2,
+    blacklist: []// see "Merge Process" section for details.
+};
 
 
 declare global {
@@ -51,9 +51,9 @@ let composeEnhancers
 //Configuring ReduxDevTools
 // if (process.env.NODE_ENV === 'development') {
 composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-// const pReducer = persistReducer(persistConfig, rootReducer);
+const pReducer = persistReducer(persistConfig, rootReducer);
 // }
-const store = createStore(rootReducer, composeEnhancers(
+const store = createStore(pReducer, composeEnhancers(
     applyMiddleware(thunk, logger))
 )
 const persistor = persistStore(store);
@@ -63,11 +63,11 @@ const persistor = persistStore(store);
 
 const app = (
     <Provider store={store}>
-        {/*    <PersistGate loading={<h1>Hi There</h1>} persistor={persistor}> */}
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-        {/*      </PersistGate> */}
+        <PersistGate loading={<h1>Hi There</h1>} persistor={persistor}>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </PersistGate>
     </Provider>
 );
 

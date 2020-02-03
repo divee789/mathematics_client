@@ -1,28 +1,16 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { get_level_courses } from '../../../../store/actions'
+import React from 'react';
+import { useSelector } from 'react-redux';
+
 
 //Hillsong - Like Incense (Sometimes By Step)
 import './index.scss'
 
 const Overview: React.FC = () => {
-    const dispatch = useDispatch()
     const { user } = useSelector((state: any) => state.auth)
-    useEffect(() => {
-        console.log('user', user)
-        const check = async () => {
-            try {
-                dispatch(get_level_courses(user.level));
-            } catch (error) {
-                // if refresh token has expired, dispatch LOGOUT THINGS
-                console.log('error', error);
-                throw error;
-            }
-        };
-        check()
-    }, [dispatch]);
-    const { courses, processing } = useSelector((state: any) => state.course);
+    const { courses, processing, error } = useSelector((state: any) => state.course);
     let content: any;
+    console.log(courses)
+    console.log('errorc', error)
     if (processing === true) {
         content = <p className='info_alert'>Getting level courses</p>
     }
@@ -45,6 +33,8 @@ const Overview: React.FC = () => {
                 )}
             </tbody>
         </table>
+    } else {
+        content = <p>There has been an error fetching your courses</p>
     }
 
     return (

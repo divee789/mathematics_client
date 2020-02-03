@@ -40,7 +40,7 @@ export function login(data: any) {
             dispatch(success(userDetails));
         } catch (error) {
             if (error instanceof APIServiceError) {
-                console.log(error);
+                console.log('error in getting auth', error);
                 dispatch(failure(error));
                 throw error.response.data;
             }

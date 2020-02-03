@@ -1,10 +1,21 @@
 import React from 'react';
-import { Link,withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import { useSelector } from 'react-redux';
+
 
 
 import './index.scss'
-const Navbar = (props:any) => {
-    
+const Navbar = (props: any) => {
+    const { isAuth } = useSelector((state: any) => state.auth)
+    let link
+    let text
+    if (isAuth) {
+        link = '/dashboard/overview'
+        text = 'My Dashboard'
+    } else {
+        link = '/auth/login'
+        text = 'Log In'
+    }
     return (
         <>
             <nav className='main_nav'>
@@ -24,7 +35,7 @@ const Navbar = (props:any) => {
                             <Link to='/'>Sign Up</Link>
                         </div> */}
                     <div className='nav_item auth'>
-                        <Link to='/auth/login'>Log In</Link>
+                        <Link to={link}>{text}</Link>
                     </div>
                 </div>
             </nav>

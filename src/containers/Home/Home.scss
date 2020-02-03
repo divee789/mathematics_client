@@ -7,6 +7,7 @@
     overflow: hidden;
     margin: 0 auto;
     height: 100vh;
+    max-width: 1900px;
 
     .pic {
         position: absolute;
@@ -62,10 +63,9 @@
     }
 
     .header_content {
-        padding-top: 13rem;
-        padding-bottom: 8.4rem;
+        padding: 15% 0;
         padding-left: 0;
-        width: 50%;
+        width: 55%;
 
         h1 {
             font-size: 2.3rem;

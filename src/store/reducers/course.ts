@@ -9,7 +9,7 @@ const initialState = {
     error: null
 }
 
-const courseReducer = (state = initialState, action:any) => {
+const courseReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case actionTypes.courseConstants.FETCH_COURSE_REQUEST:
             return {
@@ -21,14 +21,15 @@ const courseReducer = (state = initialState, action:any) => {
             return {
                 ...state,
                 processing: false,
-                courses:null,
+                courses: null,
                 error: action.errors.response.data
             };
         case actionTypes.courseConstants.FETCH_COURSE_SUCCESS:
             return {
                 ...state,
                 courses: action.courses,
-                processing: false
+                processing: false,
+                error: null
             };
         default:
             return state;

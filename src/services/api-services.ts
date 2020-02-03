@@ -4,6 +4,7 @@ import { Logger } from '../utils/index';
 import { Storage } from '../services/storage-services';
 import APIServiceError from './error-services';
 import decode from 'jwt-decode';
+import { string } from 'prop-types';
 
 const APIBaseURL = process.env.URL || 'http://localhost:1000';
 
@@ -85,22 +86,47 @@ export default class APIRequest {
     isloggedIn = () => {
         // Checks if there is a saved token and it's still valid
         const token = Storage.checkAuthentication();
-        // Getting token from localstorage
-        console.log(!!token)
-        return !!token && !this.isTokenExpired(token);
+        console.log(token)
+        //Check for existence of token
+        if (token !== false) {
+
+            const expired = this.isTokenExpired(token)
+
+            console.log('expired', expired)
+            //check if token is not expired
+            if (!expired) {
+                console.log('wooaah')
+                return true
+            } else {
+                console.log('hey')
+                //If token is expired return false
+                return false
+            }
+
+        }
+        console.log('wow')
+        return false
     };
 
-    isTokenExpired = async (token: string) => {
+    isTokenExpired = (token: string) => {
         try {
             const decoded: any = decode(token);
             console.log(decoded)
-            console.log(new Date().getTime() - decoded.iat)
-            if (decoded.exp < new Date().getTime() - decoded.iat) {
+            const exp: number = decoded.exp
+            const date = Date.now() / 1000
+            console.log(exp, date)
+            if (exp < date) {
                 console.log('expired token found');
+                this.logout()
                 return true;
-            } else return false;
+            } else {
+                console.log('not expired')
+                return false;
+            }
+
         } catch (err) {
             console.log('expired check failed');
+            console.log(err)
             return false;
         }
     };
@@ -186,25 +212,16 @@ export default class APIRequest {
 
 
     getCourses = async () => {
-        try {
-            const response = await this.instance.get('/years/api/courses/getAll')
-            const courses = response.data.data
-            console.log(response, courses)
-            return courses
-        } catch (error) {
-            console.log(error)
-            return error
-        }
+        const response = await this.instance.get('/years/api/courses/getAll')
+        const courses = response.data.data
+        console.log(response, courses)
+        return courses
     }
     getLevelCourses = async (level: number) => {
-        try {
-            const response = await axios.get(`http://localhost:1000/years/api/courses/getAll/${level}`)
-            const courses = response.data.data
-            console.log(response, courses)
-            return courses
-        } catch (error) {
-
-        }
+        const response = await this.instance.get(`/years/api/courses/getAll/${level}`)
+        const courses = response.data.data
+        console.log(response, courses)
+        return courses
     }
 }
 
