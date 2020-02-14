@@ -1,10 +1,10 @@
+import { Response } from 'express';
 
 import axios from 'axios';
 import { Logger } from '../utils/index';
 import { Storage } from '../services/storage-services';
 import APIServiceError from './error-services';
 import decode from 'jwt-decode';
-import { string } from 'prop-types';
 
 const APIBaseURL = process.env.URL || 'http://localhost:1000';
 
@@ -25,6 +25,7 @@ const APIBaseURL = process.env.URL || 'http://localhost:1000';
 export default class APIRequest {
 
     public instance: any
+    public instance2: any
     constructor(baseURL: any) {
         this.instance = axios.create({
             baseURL: baseURL || APIBaseURL,
@@ -33,7 +34,13 @@ export default class APIRequest {
                 Accept: 'application/json'
             }
         });
-
+        this.instance2 = axios.create({
+            baseURL: baseURL || APIBaseURL,
+            timeout: 10000,
+            headers: {
+                Accept: 'multipart/form-data'
+            }
+        });
         this.instance.interceptors.request.use(
             (config: any) => {
                 Logger.info('Request: ', config.url);
@@ -78,10 +85,13 @@ export default class APIRequest {
 
     setHeader = (token: string) => {
         this.instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+        this.instance2.defaults.headers.common.Authorization = `Bearer ${token}`;
     };
 
     clearHeader() {
         delete this.instance.defaults.headers.common.Authorization;
+        delete this.instance2.defaults.headers.common.Authorization;
+
     }
     isloggedIn = () => {
         // Checks if there is a saved token and it's still valid
@@ -209,6 +219,24 @@ export default class APIRequest {
         }
     };
 
+    verifyEmail = async (data) => {
+        try {
+            const res = await this.instance.get('/auth/verify_email?token=' + data)
+            return res
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    uploadProfileImage = async (data: any) => {
+        try {
+            const res = await this.instance2.post('/auth/upload', data)
+            console.log(res)
+            return res.data.client
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
 
     getCourses = async () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { login } from '../../store/actions';
 import './auth.scss';
@@ -69,8 +69,8 @@ const LogIn: React.FC = (props: any) => {
                                             </div>
                                             <div className="input-container btn_container">
                                                 <button disabled={formProps.isSubmitting}>{text}</button>
-                                                <p>Can't remember your password?<a href="/">Reset</a></p>
-                                                <p>Don't have an account?<a href="/">Click here to register</a></p>
+                                                <p>Can't remember your password?<Link to='/auth/login'>Reset</Link></p>
+                                                <p>Don't have an account?<Link to="/auth/signup">Click here to register</Link></p>
                                             </div>
                                         </Form>
                                     </>

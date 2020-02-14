@@ -1,18 +1,21 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { get_level_courses } from "../../store/actions"
+import { get_level_courses, logout } from "../../store/actions"
 import { Route, Switch, Redirect, useRouteMatch, NavLink, withRouter } from 'react-router-dom';
 
 import './index.scss'
+
 import Overview from './Routes/Overview';
 import Courses from './Routes/Courses'
-import Account from './Routes/Account'
+import Setting from './Routes/Setting'
+import Loading from '../../components/Loading';
 
 
 const Dashboard = (props: any) => {
 
     const dispatch = useDispatch()
     const { user } = useSelector((state: any) => state.auth)
+    const { processing } = useSelector((state: any) => state.course)
     useEffect(() => {
         const check = async () => {
             try {
@@ -27,6 +30,17 @@ const Dashboard = (props: any) => {
     }, [dispatch]);
     let { path, url } = useRouteMatch();
 
+    if (processing) {
+        return (
+            <Loading />
+        )
+    }
+
+    const logOutHandler = async e => {
+        e.preventDefault()
+        await dispatch(logout())
+        props.history.push('/')
+    }
 
     return (
         <section className='dashboard_main'>
@@ -34,16 +48,10 @@ const Dashboard = (props: any) => {
                 <div className="sidenav">
                     <div className="sidenav_menu">
                         <div className='user_info'>
-                            {/* <p>
 
-                                <span className="logo-text" onClick={() => {
-                                    props.history.push('/');
-                                }}>Mathletes</span>
-
-                            </p> */}
                             <p className="greet_user">
                                 Hello {' '}
-                                <span className="username">PSC1607742</span>
+                                <span className="username">{user.matriculation_number}</span>
                             </p>
                             <p className='date'>{new Date().toLocaleString()}</p>
 
@@ -58,12 +66,13 @@ const Dashboard = (props: any) => {
                             <NavLink to={`${url}/levels`}>
                                 Register courses
                          </NavLink>
-                            <NavLink to={`${url}/account`}>
-                                My Account
-                         </NavLink>
                             <NavLink to={`${url}/department`}>
                                 Department
                          </NavLink>
+                            <NavLink to={`${url}/settings`}>
+                                Settings
+                         </NavLink>
+                            <a href="#" onClick={logOutHandler}>Log Out</a>
                         </div>
                     </div>
                 </div>
@@ -72,7 +81,7 @@ const Dashboard = (props: any) => {
                 <Switch>
                     <Route path={`${path}/overview`} component={Overview} />
                     <Route path={`${path}/courses`} component={Courses} />
-                    <Route path={`${path}/account`} component={Account} />
+                    <Route path={`${path}/settings`} component={Setting} />
                     <Redirect to="/" />
                 </Switch>
             </div>

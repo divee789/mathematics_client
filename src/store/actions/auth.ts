@@ -83,6 +83,11 @@ export function update(data: any) {
     return async (dispatch: any) => {
         try {
             await dispatch(request());
+            if (data.profile_image) {
+                console.log('redux image data', data)
+                dispatch(success(data));
+                return
+            }
             const userDetails = await authAPIRequest.update(data);
             console.log(userDetails)
             dispatch(success(userDetails));

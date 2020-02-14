@@ -70,6 +70,13 @@ const authReducer = (state = initialState, action: any) => {
                 user: action.user.user,
                 error: null
             };
+        case actionTypes.authConstants.UPDATE_USER_SUCCESS:
+            return {
+                ...state,
+                processing: false,
+                user: action.user,
+                error: null
+            };
         default:
             return state
     }
