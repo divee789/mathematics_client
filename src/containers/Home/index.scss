@@ -328,4 +328,48 @@
             font-size: 11px;
         }
     }
+
+    section {
+        width: 80%;
+        margin: 0 auto;
+        padding: 3rem 0;
+    }
+
+    .team_card_container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 5rem;
+
+        .team_card {
+            width: 23%;
+            text-align: center;
+            box-shadow: 0 12px 50px 0 rgba(0, 0, 0, .25);
+            background: white;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            padding-bottom: 2rem;
+            box-sizing: border-box;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 250px;
+                margin-bottom: 2rem;
+                object-fit: cover;
+            }
+
+            p {
+                font-size: 13px;
+                margin: 0;
+            }
+
+            .lecturer_name {
+                font-weight: bold;
+                font-style: italic;
+            }
+        }
+    }
 }

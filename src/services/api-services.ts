@@ -121,10 +121,8 @@ export default class APIRequest {
     isTokenExpired = (token: string) => {
         try {
             const decoded: any = decode(token);
-            console.log(decoded)
             const exp: number = decoded.exp
             const date = Date.now() / 1000
-            console.log(exp, date)
             if (exp < date) {
                 console.log('expired token found');
                 this.logout()
@@ -236,6 +234,11 @@ export default class APIRequest {
         } catch (error) {
             console.log(error)
         }
+    }
+
+    getLecturers = async (page: number) => {
+        const res = await this.instance.get('/years/api/lecturers/getAll?page=' + page)
+        return { pager: res.data.pager, pageItems: res.data.pageOfItems }
     }
 
 

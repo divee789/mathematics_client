@@ -1,14 +1,71 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getLecturers } from '../../store/actions';
 
-import Navbar from '../../components/NavBar'
-import test from '../../assets/images/profile.jpg'
-import image1 from '../../assets/images/anwer.png'
-import image2 from '../../assets/images/newpassword.png'
-import image3 from '../../assets/images/otp.png'
+import Navbar from '../../components/NavBar';
+// import test from '../../assets/images/profile.jpg'
+// import image1 from '../../assets/images/anwer.png'
+// import image2 from '../../assets/images/newpassword.png'
+// import image3 from '../../assets/images/otp.png'
 import './index.scss'
 
 
 const Home: React.FC = () => {
+
+
+    const dispatch = useDispatch()
+    const { ltr_pageItems, ltr_pager, ltr_error } = useSelector((state: any) => state.course)
+
+    let team
+    let pagination
+
+    let loadPage = (page: number) => {
+        dispatch(getLecturers(page))
+        return
+    }
+
+    if (ltr_pageItems !== null || ltr_pager !== null) {
+        team = <> {
+            ltr_pageItems.map((lecturer: any) =>
+                <div className='team_card' key={lecturer.id}>
+                    <img src='https://res.cloudinary.com/donalpha/image/upload/v1578874197/f0wi08kf7lj3lywtev5q.jpg' />
+                    <p className='lecturer_name'>{lecturer.title + ' ' + lecturer.first_name + ' '}{lecturer.last_name}</p>
+                    <p>{lecturer.position}</p>
+                    <p>{lecturer.department}</p>
+                </div>
+            )
+        }
+        </>
+        pagination = <>
+            <div className="card-footer pb-0 pt-3">
+                {ltr_pager.pages && ltr_pager.pages.length &&
+                    <ul className="pagination">
+                        <li className={`page-item first-item ${ltr_pager.currentPage === 1 ? 'disabled' : ''}`}>
+                            <span onClick={() => loadPage(1)} className="page-span">First</span>
+                        </li>
+                        <li className={`page-item previous-item ${ltr_pager.currentPage === 1 ? 'disabled' : ''}`}>
+                            <span onClick={() => loadPage(ltr_pager.currentPage - 1)} className="page-span">Previous</span>
+                        </li>
+                        {ltr_pager.pages.map(page =>
+                            <li key={page} className={`page-item number-item ${ltr_pager.currentPage === page ? 'active' : ''}`}>
+                                <span onClick={() => loadPage(page)} className="page-span">{page}</span>
+                            </li>
+                        )}
+                        <li className={`page-item next-item ${ltr_pager.currentPage === ltr_pager.totalPages ? 'disabled' : ''}`}>
+                            <span onClick={() => loadPage(ltr_pager.currentPage + 1)} className="page-span">Next</span>
+                        </li>
+                        <li className={`page-item last-item ${ltr_pager.currentPage === ltr_pager.totalPages ? 'disabled' : ''}`}>
+                            <span onClick={() => loadPage(ltr_pager.totalPages)} className="page-span">Last</span>
+                        </li>
+                    </ul>
+                }
+            </div>
+
+        </>
+    } else {
+        console.log(ltr_error)
+        team = <p>Failed to get lecturers</p>
+    }
 
     return (
         <>
@@ -133,6 +190,7 @@ const Home: React.FC = () => {
                             </div>
                         </div>
                     </div>
+
                     <div className="actions">
                         <div className="item">
                             <a href="/" className="button q">CREATE ACCOUNT</a>
@@ -142,6 +200,14 @@ const Home: React.FC = () => {
                         </div>
                     </div>
                 </div>
+
+                <section>
+                    <h3>Our Team</h3>
+                    <div className='team_card_container'>
+                        {team}
+                    </div>
+                    {pagination}
+                </section>
             </section>
         </>
     )

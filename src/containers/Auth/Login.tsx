@@ -20,6 +20,11 @@ const LogIn: React.FC = (props: any) => {
         message = error.message
         // setTimeout(message = '', 3000)
     }
+    let styles = {
+        padding: '2rem',
+        backgroundColor: 'red',
+        color: 'white'
+    }
     const logvalidationSchema = Yup.object().shape({
         matriculation_number: Yup.string()
             .min(10, 'Invalid matriculation_number')
@@ -55,7 +60,7 @@ const LogIn: React.FC = (props: any) => {
                             render={formProps => {
                                 return (
                                     <>
-                                        <p className='error_message'>{message}</p>
+                                        <p style={styles} className='error_message'>{message}</p>
                                         <Form className="form">
                                             <h2>Log In</h2>
                                             <p>Welcome back,please log in to your account to access your dashboard</p>

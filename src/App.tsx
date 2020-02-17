@@ -1,14 +1,13 @@
 import React, { Suspense, useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout } from './store/actions';
+import { logout, getLecturers } from './store/actions';
 import Request from './services/api-services';
 
 import Landing from './containers/Home'
 import Blog from './containers/Blog'
 import NotFound from './containers/404'
 import Loading from './components/Loading'
-
 import VerifyEmail from './components/verifyEmail'
 
 const api = new Request(process.env.BASE_URL);
@@ -31,13 +30,16 @@ const App = (props: any) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(getLecturers(1))
     let isLoggedIn = api.isloggedIn()
     console.log(isLoggedIn)
     if (!isLoggedIn) {
       dispatch(logout())
     }
   }, [dispatch])
+
   const { isAuth } = useSelector((state: any) => state.auth);
+
   let routes = (
     <Switch>
       <Route path={`/dashboard`} render={props => (isAuth ? <Dashboard /> : <Redirect to="/auth/login" />)} />

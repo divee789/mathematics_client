@@ -6,10 +6,23 @@ export interface Course {
     semester: number,
     level: number,
     lecturer: object,
-    lecturerId:number
+    lecturerId: number
 }
 
-export interface CourseState{
+export interface Lecturer {
+    // id: number,
+    // title: string,
+    // position: string,
+    // first_name: string,
+    // last_name: string,
+    // image_url: string,
+    // department: string,
+    // courses: any,
+    pageItems: any,
+    pager: any
+}
+
+export interface CourseState {
     courses: Course[],
     course: Course,
     processing: boolean,

@@ -20,7 +20,7 @@ const VerifyEmail: React.FC = (props: any) => {
             }
         }
         call()
-    }, [''])
+    }, [api])
 
     let text
     if (confirming) text = 'confirmed'
