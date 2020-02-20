@@ -12,12 +12,10 @@ const Setting: React.FC = () => {
     const { user } = useSelector((state: any) => state.auth)
 
     let profile_url
-    if (user.profile_image) {
-        profile_url = user.profile_image
-    } else {
-        profile_url = "https://res.cloudinary.com/donalpha/image/upload/v1578874197/f0wi08kf7lj3lywtev5q.jpg"
+    let verify
+    const verifyEmail = async () => {
+        const res = await api.verifyEmail(user.email)
     }
-
     const fileChangedHandler = (event) => {
         const file = event.target.files[0]
         setImage(file)
@@ -29,6 +27,15 @@ const Setting: React.FC = () => {
         console.log('resData', resData)
         dispatch(update(resData))
     }
+    if (user.profile_image) {
+        profile_url = user.profile_image
+    } else {
+        profile_url = "https://res.cloudinary.com/donalpha/image/upload/v1578874197/f0wi08kf7lj3lywtev5q.jpg"
+    }
+    if (!user.email_verified) {
+        verify = <button onClick={verifyEmail}>Verify email</button>
+    }
+
     return (
         <>
             <section className='dashboard_settings'>
@@ -40,10 +47,10 @@ const Setting: React.FC = () => {
                         <div>
                             <img src={profile_url} alt="image" className='profile_image' />
                         </div>
-                        <button>Change Profile Pic</button>
                         <div>
                             <input type="file" onChange={fileChangedHandler} />
                             <button onClick={uploadHandler}>Upload image</button>
+                            {verify}
                         </div>
                     </div>
                 </div>

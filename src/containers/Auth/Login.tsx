@@ -14,16 +14,18 @@ const LogIn: React.FC = (props: any) => {
     const dispatch = useDispatch();
 
     let text = 'CONTINUE';
-    let message = ''
+    let message = null
+    let styles
     if (processing) text = 'Please wait...';
     if (error) {
         message = error.message
         // setTimeout(message = '', 3000)
-    }
-    let styles = {
-        padding: '2rem',
-        backgroundColor: 'red',
-        color: 'white'
+        styles = {
+            padding: '1rem',
+            backgroundColor: 'red',
+            color: 'white',
+            borderRadius: '10px'
+        }
     }
     const logvalidationSchema = Yup.object().shape({
         matriculation_number: Yup.string()
@@ -74,7 +76,7 @@ const LogIn: React.FC = (props: any) => {
                                             </div>
                                             <div className="input-container btn_container">
                                                 <button disabled={formProps.isSubmitting}>{text}</button>
-                                                <p>Can't remember your password?<Link to='/auth/login'>Reset</Link></p>
+                                                <p>Can't remember your password?<Link to='/password_reset_request'>Reset</Link></p>
                                                 <p>Don't have an account?<Link to="/auth/signup">Click here to register</Link></p>
                                             </div>
                                         </Form>

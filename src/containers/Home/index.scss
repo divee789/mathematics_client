@@ -372,4 +372,18 @@
             }
         }
     }
+
+    .pagination {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+
+        a {
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            font-size: unset;
+        }
+    }
 }

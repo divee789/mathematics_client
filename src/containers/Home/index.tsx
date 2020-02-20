@@ -19,7 +19,8 @@ const Home: React.FC = () => {
     let team
     let pagination
 
-    let loadPage = (page: number) => {
+    let loadPage = (page: number, e) => {
+        e.preventDefault()
         dispatch(getLecturers(page))
         return
     }
@@ -41,21 +42,21 @@ const Home: React.FC = () => {
                 {ltr_pager.pages && ltr_pager.pages.length &&
                     <ul className="pagination">
                         <li className={`page-item first-item ${ltr_pager.currentPage === 1 ? 'disabled' : ''}`}>
-                            <span onClick={() => loadPage(1)} className="page-span">First</span>
+                            <a href='#' onClick={(e) => loadPage(1, e)} className="page-span">First</a>
                         </li>
                         <li className={`page-item previous-item ${ltr_pager.currentPage === 1 ? 'disabled' : ''}`}>
-                            <span onClick={() => loadPage(ltr_pager.currentPage - 1)} className="page-span">Previous</span>
+                            <a href='#' onClick={(e) => loadPage(ltr_pager.currentPage - 1, e)} className="page-span">&laquo;</a>
                         </li>
-                        {ltr_pager.pages.map(page =>
+                        {/* {ltr_pager.pages.map(page =>
                             <li key={page} className={`page-item number-item ${ltr_pager.currentPage === page ? 'active' : ''}`}>
                                 <span onClick={() => loadPage(page)} className="page-span">{page}</span>
                             </li>
-                        )}
+                        )} */}
                         <li className={`page-item next-item ${ltr_pager.currentPage === ltr_pager.totalPages ? 'disabled' : ''}`}>
-                            <span onClick={() => loadPage(ltr_pager.currentPage + 1)} className="page-span">Next</span>
+                            <a href='#' onClick={(e) => { loadPage(ltr_pager.currentPage + 1, e) }} className="page-span">&raquo;</a>
                         </li>
                         <li className={`page-item last-item ${ltr_pager.currentPage === ltr_pager.totalPages ? 'disabled' : ''}`}>
-                            <span onClick={() => loadPage(ltr_pager.totalPages)} className="page-span">Last</span>
+                            <a href='#' onClick={(e) => loadPage(ltr_pager.totalPages, e)} className="page-span">Last</a>
                         </li>
                     </ul>
                 }

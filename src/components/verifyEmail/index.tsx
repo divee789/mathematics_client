@@ -23,8 +23,8 @@ const VerifyEmail: React.FC = (props: any) => {
     }, [api])
 
     let text
-    if (confirming) text = 'confirmed'
-    if (!confirming) text = 'confirming'
+    if (confirming) text = 'confirming'
+    if (!confirming) text = 'confirmed'
     return (
         <div>
             {text}

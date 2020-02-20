@@ -1,4 +1,3 @@
-import { Response } from 'express';
 
 import axios from 'axios';
 import { Logger } from '../utils/index';
@@ -218,12 +217,27 @@ export default class APIRequest {
     };
 
     verifyEmail = async (data) => {
-        try {
-            const res = await this.instance.get('/auth/verify_email?token=' + data)
-            return res
-        } catch (error) {
-            console.log(error)
-        }
+        const res = await this.instance.get('/auth/verify_email?token=' + data)
+        return res
+    }
+
+    passwordReset = async (data) => {
+        const res = await this.instance.get(`/auth/password_reset_request?matriculation_number=${data}`)
+        return res
+    }
+
+    confirmPasswordReset = async (token: string) => {
+        const res = await this.instance.get(`/auth/password_reset_confirmation?password_reset_token=${token}`)
+        return res
+    }
+
+    passwordResetEmail = async (data) => {
+        console.log('email data', data)
+        const res = await this.instance.post('/auth/password_reset_email', {
+            matriculation_number: data.matriculation_number,
+            password: data.password.trim()
+        })
+        return res
     }
 
     uploadProfileImage = async (data: any) => {

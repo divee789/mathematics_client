@@ -9,6 +9,8 @@ import Blog from './containers/Blog'
 import NotFound from './containers/404'
 import Loading from './components/Loading'
 import VerifyEmail from './components/verifyEmail'
+import PasswordReset from './components/ForgotPassword'
+import PasswordConfirmation from './components/ForgotPassword/PasswordReset'
 
 const api = new Request(process.env.BASE_URL);
 
@@ -44,6 +46,8 @@ const App = (props: any) => {
     <Switch>
       <Route path={`/dashboard`} render={props => (isAuth ? <Dashboard /> : <Redirect to="/auth/login" />)} />
       <Route path='/verify_email/:token' component={VerifyEmail} />
+      <Route path='/password_reset_request' component={PasswordReset} />
+      <Route path='/password_reset/:token' component={PasswordConfirmation} />
       <Route path="/auth/signup" render={props => (isAuth ? <Redirect to="/dashboard/home" /> : <Signup />)} />
       <Route path="/auth/login" render={props => (isAuth ? <Redirect to="/dashboard/home" /> : <Login />)} />
       <Route path='/blog' component={Blog} />
