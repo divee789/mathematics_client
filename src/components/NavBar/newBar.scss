@@ -1,0 +1,52 @@
+.nav {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1600px;
+    width: 85%;
+    margin: 30px auto;
+    z-index: 999999999999999999;
+
+    .nav_item {
+        display: inline-block;
+        margin-left: 50px;
+
+        a {
+            color: black;
+            position: relative;
+            font-weight: bolder;
+            font-size: 14px;
+
+            .circle {
+                display: none;
+            }
+
+            &.active,
+            &:hover {
+                color: #9D60EB;
+
+                .circle {
+                    display: block;
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background: #9D60EB;
+                    position: absolute;
+                    bottom: -12px;
+                    right: 40%;
+                }
+            }
+        }
+    }
+
+    .auth {
+        display: inline-block;
+        margin-left: 50px;
+
+        a {
+            color: white;
+        }
+    }
+}

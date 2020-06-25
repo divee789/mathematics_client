@@ -1,38 +1,97 @@
 import React from 'react';
 
-import Navbar from '../../components/NavBar'
+import Navbar from '../../components/NavBar/newBar'
+import Contact from '../../components/Landing/Contact'
+import Footer from '../../components/Landing/Footer'
 import './index.scss'
 
 import blogpic from '../../assets/images/code.jpg'
-import overlay from "../../assets/images/download.jpg";
+
+const blogs = [
+    {
+        id: 1,
+        title: 'A Sufficiently long blog title',
+        author: 'Divine Olokor',
+        date: '14 Feb,2020'
+    },
+    {
+        id: 2,
+        title: 'A Sufficiently long blog title',
+        author: 'Divine Olokor',
+        date: '14 Feb,2020'
+    }, {
+        id: 3,
+        title: 'A Sufficiently long blog title',
+        author: 'Divine Olokor',
+        date: '14 Feb,2020'
+    }, {
+        id: 4,
+        title: 'A Sufficiently long blog title',
+        author: 'Divine Olokor',
+        date: '14 Feb,2020'
+    }, {
+        id: 5,
+        title: 'A Sufficiently long blog title',
+        author: 'Divine Olokor',
+        date: '14 Feb,2020'
+    }, {
+        id: 6,
+        title: 'A Sufficiently long blog title',
+        author: 'Divine Olokor',
+        date: '14 Feb,2020'
+    },
+    {
+        title: 'A Sufficiently long blog title',
+        author: 'Divine Olokor',
+        date: '14 Feb,2020'
+    }, {
+        title: 'A Sufficiently long blog title',
+        author: 'Divine Olokor',
+        date: '14 Feb,2020'
+    }, {
+        title: 'A Sufficiently long blog title',
+        author: 'Divine Olokor',
+        date: '14 Feb,2020'
+    },
+]
+
+interface Blog {
+    id: number,
+    title: string,
+    author: string,
+    date: string
+}
 
 const Home: React.FC = () => {
 
     return (
         <>
-            <header className='blog_header'>
-                <div className="overlay">
-               <Navbar/>
-                <div className='header_blog_title'>
-                   <h1>Information is Power</h1>
-                    </div>
+            <Navbar />
+            <section className='blog_section'>
+                <header>
+                    <h1>Blog</h1>
+                    <p>Democratizing Information</p>
+                </header>
+                <div className="blog_container">
+                    {blogs.map((blog: Blog) =>
+                        <div className='blog_card' key={blog.id}>
+                            <div className="img_container">
+                                <img src={blogpic} alt={'blog_pic'} />
+                            </div>
+                            <div className="post">
+                                <h3 className="title">
+                                    {blog.title}
+                                </h3>
+                                <p className='author'>By {blog.author} {blog.date}</p>
+                                <p className='text'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo optio ipsam, nisi, quidem accusantium eveniet libero ratione excepturi .</p>
+                                <p className='details'>View Details</p>
+                            </div>
+                        </div>
+                    )}
                 </div>
-            </header>
-            <section className='blog_body'>
-                <div className='blog_body_content'>
-                    <div className='blog_image'>
-                        <img src={blogpic}/>
-                    </div>
-                    <div className='blog_body_details'>
-                        <p className='blog_date'>{new Date().toLocaleString()}</p>
-                        <h2 className='blog_title'>Coders Wanted</h2>
-                        <p className='blog_content'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quae eos reiciendis aperiam quis est sit nulla magnam modi eligendi molestiae error asperiores ut minus recusandae voluptatum, alias nemo. Illum...<i>Read more</i></p>
-                    </div>
-                    <div>
-                        
-                    </div>
-              </div>
             </section>
+            <Contact />
+            <Footer />
         </>
     )
 

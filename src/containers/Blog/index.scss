@@ -1,52 +1,76 @@
-.blog_header {
-    position: relative;
+.blog_section {
+    // width: 85%;
+    // margin: 0 auto;
     overflow: hidden;
-    margin-bottom: 5rem;
-    background: url('../../assets/images/anwer.png');
-    background-size: cover;
-    background-repeat: no-repeat;
 
-    .overlay {
-        background-color: rgba(28, 53, 119, 0.93);
-        padding: 2% 5%;
-        margin: 0 auto;
-        width:100%;
-        height:100%;
-    }
+    header {
+        text-align: center;
+        padding: 4% 0;
 
-    .header_blog_title {
         h1 {
-            text-align: center;
-            margin-top: 18rem;
-            font-size: 2.5rem;
-            color: white;
-            letter-spacing: 1px;
+            font-size: 46px;
+            font-family: Sailec;
         }
-    }
-}
 
-.blog_body {
-    width: 40%;
-    margin: 0 auto;
-    overflow: hidden;
-    padding-bottom: 3rem;
-
-    .blog_image {
-        width: 100%;
-        height: 400px;
-
-        img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
+        p {
+            font-family: 18px;
         }
+
+        background-image: url('../../assets/images/contact_bg.jpg');
+        background-size: cover;
     }
 
-    .blog_body_details {
-        width: 100%;
+    .blog_container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 80%;
+        margin: 0 auto;
 
-        i {
-            cursor: pointer;
+        .blog_card {
+            width: 32%;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+
+            .img_container {
+                padding: 1rem 1.3rem;
+
+                img {
+                    width: 100%;
+                    height: 225px;
+                }
+            }
+
+            .post {
+                padding: 0 1rem;
+
+                .title {
+                    font-size: 24px;
+                    color: #222222;
+                }
+
+                .author {
+                    color: #999999;
+                    font-size: 14px;
+                }
+
+                .text {
+                    font-size: 15px;
+                    color: #555555;
+                }
+
+                .details {
+                    color: #49BE55;
+                    font-size: 15px;
+                    cursor: pointer;
+                }
+            }
+
         }
     }
+
 }
