@@ -1,3 +1,4 @@
+import { ISignUp, ILogIn } from "./../../interfaces/index";
 import * as actionTypes from "./actionTypes";
 import APIRequest from "../../services/api-services";
 import GraphQlApi from "../../services/graphqlApis";
@@ -22,35 +23,34 @@ export function logout() {
     }
   };
 }
-export function login(data: any) {
-  function failure(errors: any) {
-    return { type: actionTypes.authConstants.LOGIN_FAILURE, errors };
+
+export function login(data: ILogIn) {
+  function success(token: string) {
+    return { type: actionTypes.authConstants.LOGIN_SUCCESS, token };
   }
   return async (dispatch: any) => {
-    try {
-      await graphQlRequest.signIn();
-    } catch (error) {
-      dispatch(failure(error));
-    }
+    const res = await graphQlRequest.signIn(data);
+    dispatch(success(res.token));
   };
 }
-export function signup(data: any) {
-  function success(user: any) {
-    return { type: actionTypes.authConstants.SIGNUP_SUCCESS, user };
-  }
-  function failure(errors: any) {
-    return { type: actionTypes.authConstants.SIGNUP_FAILURE, errors };
+
+export function getStudent() {
+  function success(student) {
+    return { type: actionTypes.authConstants.GET_USER_SUCCESS, student };
   }
   return async (dispatch: any) => {
-    try {
-      const userDetails = await authAPIRequest.signUp(data);
-      dispatch(success(userDetails));
-    } catch (error) {
-      if (error instanceof APIServiceError) {
-        dispatch(failure(error));
-        throw error.response.data;
-      }
-    }
+    const student = await graphQlRequest.getStudent();
+    dispatch(success(student));
+  };
+}
+
+export function signup(data: ISignUp) {
+  function success(token: string) {
+    return { type: actionTypes.authConstants.SIGNUP_SUCCESS, token };
+  }
+  return async (dispatch: any) => {
+    const res = await graphQlRequest.signUp(data);
+    dispatch(success(res.token));
   };
 }
 export function update(data: any) {

@@ -17,14 +17,19 @@ const authReducer = (state = initialState, action: any) => {
         ...state,
         token: null,
         isAuth: false,
-        error: action.errors.response.data,
+        error: action.errors.message,
       };
     case actionTypes.authConstants.LOGIN_SUCCESS:
       return {
         ...state,
-        token: action.user.token,
+        token: action.token,
         isAuth: true,
         error: null,
+      };
+    case actionTypes.authConstants.GET_USER_SUCCESS:
+      return {
+        ...state,
+        user: action.student,
       };
     case actionTypes.authConstants.LOGOUT:
       return {
@@ -44,9 +49,8 @@ const authReducer = (state = initialState, action: any) => {
     case actionTypes.authConstants.SIGNUP_SUCCESS:
       return {
         ...state,
-        token: action.user.token,
+        token: action.token,
         isAuth: true,
-        user: action.user.user,
         error: null,
       };
     case actionTypes.authConstants.UPDATE_USER_SUCCESS:

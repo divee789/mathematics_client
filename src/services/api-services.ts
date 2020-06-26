@@ -130,7 +130,7 @@ export default class APIRequest {
   };
 
   logout = () => {
-    Storage.removeItem("userToken");
+    Storage.removeItem("access_token");
     Storage.removeItem("refreshToken");
     Storage.removeItem("userTokenExpiration");
   };

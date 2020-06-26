@@ -1,29 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import * as Yup from "yup";
 import { login } from "../../store/actions";
 import "./auth.scss";
 
 const LogIn: React.FC = (props: any) => {
-  const { processing, error } = useSelector((state: any) => state.auth);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
-  let text = "CONTINUE";
-  let message = null;
-  let styles;
-  if (processing) text = "Please wait...";
-  if (error) {
-    message = error.message;
-    styles = {
-      padding: "1rem",
-      backgroundColor: "red",
-      color: "white",
-      borderRadius: "10px",
-    };
-  }
-  const logvalidationSchema = Yup.object().shape({
+  const styles = {
+    padding: "1rem",
+    backgroundColor: "red",
+    color: "white",
+    borderRadius: "10px",
+  };
+
+  const logInValidationSchema = Yup.object().shape({
     matriculation_number: Yup.string()
       .min(10, "Invalid matriculation_number")
       .required("Provide your matriculation_number please"),
@@ -37,13 +32,14 @@ const LogIn: React.FC = (props: any) => {
     { setSubmitting, setErrors }: any,
   ) => {
     try {
-      console.log(values);
+      setLoading(true);
       await dispatch(login(values));
+      setLoading(false);
       return props.history.push(`/dashboard/overview`);
     } catch (err) {
-      console.log("log err", err);
-
+      setError(err.message);
       setSubmitting(false);
+      setLoading(false);
     }
   };
 
@@ -57,14 +53,20 @@ const LogIn: React.FC = (props: any) => {
                 matriculation_number: ("" as unknown) as string,
                 password: "",
               }}
-              validationSchema={logvalidationSchema}
+              validationSchema={logInValidationSchema}
               onSubmit={handleSubmit}
               render={(formProps) => {
                 return (
                   <>
-                    <p style={styles} className="error_message">
-                      {message}
-                    </p>
+                    {error && (
+                      <p
+                        style={styles}
+                        className="error_message"
+                        onClick={() => setError(null)}
+                      >
+                        {error}
+                      </p>
+                    )}
                     <Form className="form">
                       <h2>Log In</h2>
                       <p>
@@ -95,7 +97,7 @@ const LogIn: React.FC = (props: any) => {
                       </div>
                       <div className="input-container btn_container">
                         <button disabled={formProps.isSubmitting}>
-                          {text}
+                          {loading ? "Please wait.." : "PROCEED"}
                         </button>
                         <p>
                           Can't remember your password?
