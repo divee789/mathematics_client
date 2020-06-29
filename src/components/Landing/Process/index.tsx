@@ -1,46 +1,115 @@
-import React from 'react';
+import React from "react";
 
-import Button from '../../Button'
+import image1 from "../../../assets/images/image3.png";
+import image2 from "../../../assets/images/Image2.png";
+import image3 from "../../../assets/images/Image1.png";
+import check from "../../../assets/images/check.png";
 
-import image1 from '../../../assets/images/image1.jpg'
-import image4 from '../../../assets/images/image4.jpg'
-
-import './index.scss'
+import "./index.scss";
 const Process = () => (
-    <>
-        <div className='section_container'>
-            <section className='process'>
-                <div>
-                    <h1>The Process</h1>
-                    <h2>About Our Work</h2>
+  <>
+    <section className="first_process">
+      <div>
+        <p>Effortless Validation for</p>
+        <h1>Efficient And Informative UI</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
+          consequuntur cum perspiciatis nihil explicabo similique obcaecati
+          necessitatibus sed eum ratione doloribus, doloremque minus aliquam
+          tempora pariatur voluptate exercitationem eos accusamus.
+        </p>
+        <h3>Access to learning</h3>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident
+          adipisci dolores porro accusamus veniam praesentium, assumenda cumque
+          quaerat. Officia quo nam incidunt expedita doloremque repellendus
+          voluptatum cumque corrupti accusamus nihil?
+        </p>
+        <h3>Access to learning</h3>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident
+          adipisci dolores porro accusamus veniam praesentium, assumenda cumque
+          quaerat. Officia quo nam incidunt expedita doloremque repellendus
+          voluptatum cumque corrupti accusamus nihil?
+        </p>
+        <h3>Access to learning</h3>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident
+          adipisci dolores porro accusamus veniam praesentium, assumenda cumque
+          quaerat. Officia quo nam incidunt expedita doloremque repellendus
+          voluptatum cumque corrupti accusamus nihil?
+        </p>
+      </div>
+      <div>
+        <img src={image1} alt="education is power" />
+      </div>
+    </section>
 
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, voluptates temporibus alias cumque animi quod sunt officiis vitae dolorem deleniti consequatur quo voluptate culpa odit. Illo fuga distinctio cupiditate dolorem!
-                </p>
-                    <p>quo voluptate culpa odit. Illo fuga distinctio cupiditate dolore quo voluptate culpa odit. Illo fuga distinctio cupiditate dolorem!</p>
-
-                    <Button colored>Know More</Button>
-                </div>
-                <div>
-                    <img src={image1} alt="work_process" />
-                </div>
-            </section>
-            <section className='process'>
-                <div>
-                    <img src={image4} alt="always_help" />
-                </div>
-                <div>
-                    <h1>We are here to</h1>
-                    <h2>always help you</h2>
-
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, voluptates temporibus alias cumque animi quod sunt officiis vitae dolorem deleniti consequatur quo voluptate culpa odit. Illo fuga distinctio cupiditate dolorem!
-                </p>
-                    <p>quo voluptate culpa odit. Illo fuga distinctio cupiditate dolore quo voluptate culpa odit. Illo fuga distinctio cupiditate dolorem!</p>
-                </div>
-            </section>
+    <section className="second_process">
+      <div className="first_item">
+        <img src={image3} alt="education is power" />
+      </div>
+      <div className="second_item">
+        <p>Easier Decision making for</p>
+        <h1>Decision Algorithms</h1>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident
+          adipisci dolores porro accusamus veniam praesentium, assumenda cumque
+          quaerat. Officia quo nam incidunt expedita doloremque repellendus
+          voluptatum cumque corrupti accusamus nihil?
+        </p>
+        <div className="checks">
+          <div>
+            <img src={check} />
+            <p>Never worry about overpaying for your energy again. </p>
+          </div>
+          <div>
+            <img src={check} />
+            <p>Never worry about overpaying for your energy again. </p>
+          </div>
+          <div>
+            <img src={check} />
+            <p>Never worry about overpaying for your energy again. </p>
+          </div>
         </div>
-    </>
-)
+      </div>
+    </section>
+    <section className="first_process">
+      <div>
+        <p>Effortless Validation for</p>
+        <h1>Efficient And Informative UI</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
+          consequuntur cum perspiciatis nihil explicabo similique obcaecati
+          necessitatibus sed eum ratione doloribus
+        </p>
+        <h3>Access to learning</h3>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident
+          adipisci dolores porro accusamus veniam praesentium, assumenda cumque
+          quaerat. Officia quo nam incidunt expedita doloremque repellendus
+          voluptatum cumque corrupti accusamus nihil?
+        </p>
+        <h3>Access to learning</h3>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident
+          adipisci dolores porro accusamus veniam praesentium, assumenda cumque
+          quaerat. Officia quo nam incidunt expedita doloremque repellendus
+          voluptatum cumque corrupti accusamus nihil?
+        </p>
+        <h3>Access to learning</h3>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident
+          adipisci dolores porro accusamus veniam praesentium, assumenda cumque
+          quaerat. Officia quo nam incidunt expedita doloremque repellendus
+          voluptatum cumque corrupti accusamus nihil?
+        </p>
+      </div>
+      <div>
+        <img src={image2} alt="education is power" />
+      </div>
+    </section>
+  </>
+);
 
-export default Process
+export default Process;

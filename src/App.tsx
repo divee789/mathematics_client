@@ -2,7 +2,7 @@ import React, { Suspense, useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import Landing from "./containers/Home/newDesign";
+import Landing from "./containers/Home";
 import Blog from "./containers/Blog";
 import NotFound from "./containers/404";
 import Loading from "./components/Loading";

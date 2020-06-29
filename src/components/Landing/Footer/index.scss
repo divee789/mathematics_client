@@ -1,65 +1,64 @@
 .footer {
-    width: 65%;
-    margin: 5% auto;
-    position: relative;
-    overflow: hidden;
+  width: 65%;
+  margin: 0 auto;
+  padding-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
 
-    .logo_image {
-        margin: 4% 40%;
+  .logo_image {
+    margin: 4% 40%;
+  }
+
+  section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+
+    div {
+      box-sizing: border-box;
+      margin-left: 40px;
+
+      h4 {
+        font-size: 15px;
+        color: #101c21;
+        font-family: Sailec;
+      }
+
+      ul {
+        margin: 0 auto;
+        margin-top: 1.5rem;
+        height: 100%;
+
+        li {
+          font-size: 13px;
+          margin-bottom: 1rem;
+          color: #777777;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .logo_container {
+    margin-top: 5rem;
+
+    p {
+      text-align: center;
     }
 
-    section {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        box-sizing: border-box;
+    .social_logos {
+      margin: 0 auto;
+      text-align: center;
 
-        div {
-            box-sizing: border-box;
-            margin-left: 40px;
-
-            h4 {
-                font-size: 15px;
-                color: #101C21;
-                font-family: Sailec;
-            }
-
-            ul {
-                margin: 0 auto;
-                margin-top: 1.5rem;
-                height: 100%;
-
-                li {
-                    font-size: 13px;
-                    margin-bottom: 1rem;
-                    color: #777777;
-                    cursor: pointer;
-                }
-            }
-
-        }
+      div {
+        display: inline-block;
+        margin-right: 20px;
+        cursor: pointer;
+      }
     }
-
-    .logo_container {
-        margin-top: 5rem;
-
-        p {
-            text-align: center;
-        }
-
-        .social_logos {
-            margin: 0 auto;
-            text-align: center;
-
-            div {
-                display: inline-block;
-                margin-right: 20px;
-                cursor: pointer;
-            }
-        }
-    }
-
+  }
 }
 
 // .footer::before {

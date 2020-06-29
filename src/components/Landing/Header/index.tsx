@@ -1,30 +1,26 @@
-import React from 'react';
+import React from "react";
 
-import back from '../../../assets/images/back.png'
+import back from "../../../assets/images/bg.png";
 
-import './index.scss'
+import "./index.scss";
 
-const Header = props => {
-    return (
-        <>
-            <section className='solution_header'>
-                <h1>Creating Simple Solutions</h1>
-                <p className='h2'>For Complex Payments</p>
-                <p className='solution_text'>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi deleniti asperiores quae reiciendis blanditiis laborum, enim voluptas
-                </p>
-                <div className="get-started">
-                    <form>
-                        <div className="form-group" >
-                            <input type="text" placeholder="Enter your email" />
-                        </div>
-                        <button>Get Started</button>
-                    </form>
-                </div>
-            </section>
-            <img src={back} className='header_image' />
-        </>
-    )
-}
+const Header = () => {
+  return (
+    <>
+      <section className="solution_header">
+        <h1>Providing Simple Solutions</h1>
+        <p className="h2">To Complex Problems</p>
+        <p className="solution_text">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi
+          deleniti asperiores quae reiciendis blanditiis laborum, enim voluptas
+        </p>
+        <div className="get-started">
+          <button>Get Started</button>
+        </div>
+        <img src={back} className="header_image" />
+      </section>
+    </>
+  );
+};
 
-export default Header
+export default Header;

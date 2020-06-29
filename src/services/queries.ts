@@ -56,3 +56,28 @@ export const GET_LEVEL_COURSES = gql`
     }
   }
 `;
+
+export const GET_ALL_COURSES = gql`
+  {
+    courses {
+      id
+      code
+      credit_load
+      title
+    }
+  }
+`;
+
+export const GET_STUDENT_COURSE = gql`
+  {
+    student_courses {
+      courses {
+        id
+        code
+        title
+        semester
+        credit_load
+      }
+    }
+  }
+`;

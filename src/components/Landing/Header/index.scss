@@ -1,101 +1,66 @@
 .solution_header {
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 10%;
+  position: relative;
+  z-index: 9999999999;
+
+  h1 {
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 0;
+    padding: 0;
+  }
+
+  .h2 {
+    font-size: 35px;
+    margin-top: -8px;
+    padding: 0;
+    margin-bottom: 2rem;
+    font-weight: 100;
+    font-family: firma;
+  }
+
+  .solution_text {
+    width: 40%;
     margin: 0 auto;
-    text-align: center;
-    margin-top: 6rem;
-    position: relative;
-    z-index: 9999999999;
+    font-size: 15px;
+    opacity: 0.8;
+  }
 
-    h1 {
-        font-size: 46px;
-        font-weight: 800;
-        margin-bottom: 0;
-        padding: 0;
+  .get-started {
+    margin: 2rem 0;
+    button {
+      font-weight: 600;
+      font-family: firma;
+      padding: 0.1rem 2rem;
+      height: 50px;
+      align-self: center;
+      border-radius: 5px;
+      background: #ff9900;
+      color: #fff;
+      border: none;
+      width: 320px;
+      //   max-width: 250px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s;
+
+      &:hover {
+        margin-bottom: 3px;
+      }
+
+      @media screen and (max-width: 600px) {
+        width: 100%;
+        max-width: unset;
+      }
     }
-
-    .h2 {
-        font-size: 43px;
-        margin-top: -10px;
-        padding: 0;
-        margin-bottom: 2rem;
-        font-weight: 100;
-        font-family: firma;
-    }
-
-    .solution_text {
-        width: 40%;
-        margin: 0 auto;
-    }
-
-    form {
-        display: flex;
-        width: 40%;
-        margin: 40px auto;
-        max-width: 700px;
-        justify-content: space-between;
-        background: #fff;
-        padding: .1rem;
-        box-shadow: 0 12px 50px 0 rgba(0, 0, 0, .25);
-        border-radius: 5px;
-
-        @media screen and (max-width:600px) {
-            flex-direction: column;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 0;
-            width: 70%;
-        }
-
-        input {
-            padding: 4px .75rem;
-            width: 100%;
-            border: none;
-            line-height: 3;
-            font-size: 16px;
-
-            @media screen and (max-width:600px) {
-                width: 100%;
-            }
-
-            &:focus {
-                outline: none;
-            }
-        }
-
-        button {
-            font-weight: 400;
-            padding: .1rem 2rem;
-            height: 50px;
-            align-self: center;
-            margin-right: 5px;
-            border-radius: 5px;
-            background: linear-gradient(to right, #1400FF -150%, #FC199B 130%);
-            color: #fff;
-            border: none;
-            width: 180px;
-            max-width: 250px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: all 0.3s;
-
-            &:hover {
-                background-color: rgba(10, 22, 54, 0.93);
-            }
-
-            @media screen and (max-width:600px) {
-                width: 100%;
-                max-width: unset;
-            }
-        }
-    }
+  }
 }
 
 .header_image {
-    width: 100%;
-    object-fit: cover;
-    margin-top: -40%;
-    z-index: -1;
-    opacity: 0.7;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+  margin-top: 6rem;
 }

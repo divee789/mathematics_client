@@ -1,38 +1,22 @@
-import React from 'react';
+import React from "react";
+import Footer from "../Footer";
+import "./index.scss";
 
-import Pic from '../../../assets/images/mart.jpg'
+const Staff = () => (
+  <section className="footer_cont">
+    <section className="contact_section">
+      <h1>Have Questions In Mind ?</h1>
+      <p>
+        We are available to answer all your enquiries, please drop your email
+        below and we will contact you within 24 hours.
+      </p>
+      <div>
+        <input type="email" />
+        <button>SEND</button>
+      </div>
+    </section>
+    <Footer />
+  </section>
+);
 
-import './index.scss'
-const Staff = props => (
-    <>
-        <div className="staff_section_container">x
-        <section className='staff_section'>
-                <h1>Our Core Values</h1>
-                <div className='card_container'>
-                    <div className="card">
-                        <img src={Pic} alt="profile_pic" />
-                        <h2>Quick <span>Response</span></h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi voluptatum dolor unde? Ullam quam, saepe aperiam.</p>
-                    </div>
-                    <div className="card">
-                        <img src={Pic} alt="profile_pic" />
-                        <h2>Great <span>Communication</span></h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi voluptatum dolor unde? Ullam quam, saepe aperiam</p>
-                    </div>
-                    <div className="card">
-                        <img src={Pic} alt="profile_pic" />
-                        <h2>Customer <span>Satisfaction</span></h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi voluptatum dolor unde? Ullam quam, saepe aperiam</p>
-                    </div>
-                </div>
-                <div className='paginate'>
-                    <span style={{ marginRight: '40px' }}>&laquo;</span>
-                    <span >&raquo;</span>
-                </div>
-            </section>
-        </div>
-    </>
-)
-
-
-export default Staff
+export default Staff;
