@@ -3,20 +3,18 @@ import { NavLink, withRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import Logo from "../../assets/images/logo.png";
-
-import Button from "../Button";
-
 import "./index.scss";
+
 const Navbar = (props: any) => {
   const { isAuth } = useSelector((state: any) => state.auth);
   let link;
   let text;
   if (isAuth) {
     link = "/dashboard/overview";
-    text = "My Dashboard";
+    text = "MY DASHBOARD";
   } else {
     link = "/auth/login";
-    text = "Log In";
+    text = "LOG IN";
   }
   return (
     <>

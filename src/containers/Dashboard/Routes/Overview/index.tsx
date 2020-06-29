@@ -1,44 +1,42 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
-import { GET_LEVEL_COURSES } from "../../../../services/queries";
+import { GET_STUDENT_COURSE } from "../../../../services/queries";
 
 import "./index.scss";
 
 const Overview = ({ student }) => {
-  const { loading, error, data } = useQuery(GET_LEVEL_COURSES, {
-    variables: {
-      level: student.level,
-    },
-  });
+  const { loading, error, data } = useQuery(GET_STUDENT_COURSE);
+  let content: JSX.Element;
 
-  let content;
-
-  if (loading) content = <p>Loading Courses... </p>;
+  if (loading)
+    content = (
+      <p style={{ textAlign: "center", marginTop: 30 }}>Loading Courses... </p>
+    );
   if (error) {
-    console.log(error);
-    content = <p>There has been an error fetching your courses</p>;
+    content = (
+      <p style={{ textAlign: "center", marginTop: 30 }}>
+        There has been an error fetching your courses
+      </p>
+    );
   }
   if (data) {
-    content = (
-      <table>
-        <tbody>
-          <tr>
-            <th>Course code</th>
-            <th>Semester</th>
-            <th>Course title</th>
-            <th>Credit load</th>
-          </tr>
-          {data.coursesByLevel.map((course: any) => (
-            <tr key={course.title}>
-              <td>{course.code}</td>
-              <td>{course.semester}</td>
-              <td>{course.title}</td>
-              <td>{course.credit_load}</td>
-            </tr>
+    content =
+      data.student_courses.courses.length !== 0 ? (
+        <div className="card_container">
+          {data.student_courses.courses.map((course: any) => (
+            <div key={course.code} className="course_card">
+              <p>{course.code}</p>
+              <p>{course.semester}</p>
+              <p>{course.title}</p>
+              <p>{course.credit_load}</p>
+            </div>
           ))}
-        </tbody>
-      </table>
-    );
+        </div>
+      ) : (
+        <p style={{ textAlign: "center", marginTop: 30 }}>
+          You have no registered courses
+        </p>
+      );
   }
 
   return (
@@ -58,10 +56,14 @@ const Overview = ({ student }) => {
                 <p className="detail_title">Course Adviser</p>
                 <p className="detail_text">Prof. Charles Charles</p>
               </div>
+              <div className="cumulative GPA">
+                <p className="detail_title">Cumulative GPA</p>
+                <p className="detail_text">4.59</p>
+              </div>
             </div>
             <hr />
             <div className="over_course_body">
-              <h3>Level Courses</h3>
+              <h3>REGISTERED COURSES</h3>
               {content}
             </div>
           </div>

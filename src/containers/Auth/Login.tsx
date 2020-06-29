@@ -78,7 +78,7 @@ const LogIn = (props: any) => {
                       <Field
                         type="text"
                         name="matriculation_number"
-                        placeholder="Matriculation_Number"
+                        placeholder="Matriculation Number"
                       />
                       <ErrorMessage
                         name="matriculation_number"
@@ -101,11 +101,11 @@ const LogIn = (props: any) => {
                         {loading ? "Please wait.." : "PROCEED"}
                       </button>
                       <p>
-                        Can't remember your password?
+                        Can't remember your password?{" "}
                         <Link to="/password_reset_request">Reset</Link>
                       </p>
                       <p>
-                        Don't have an account?
+                        Don't have an account?{" "}
                         <Link to="/auth/signup">Click here to register</Link>
                       </p>
                     </div>
