@@ -53,6 +53,15 @@ export const GET_LEVEL_COURSES = gql`
       credit_load
       title
       semester
+      lecturer {
+        id
+        first_name
+        last_name
+        email
+        title
+        department
+        position
+      }
     }
   }
 `;
@@ -64,6 +73,10 @@ export const GET_ALL_COURSES = gql`
       code
       credit_load
       title
+      lecturer {
+        first_name
+        last_name
+      }
     }
   }
 `;

@@ -1,3 +1,5 @@
+import { Tracing } from "trace_events";
+
 export interface ISignUp {
   matriculation_number: string;
   first_name: string;
@@ -24,10 +26,17 @@ export interface IStudent extends ISignUp {
 export interface ICourse {
   id: string;
   title: string;
-  course_code: string;
+  code: string;
   credit_load: number;
   semester: number;
   level: number;
-  lecturer: object;
-  lecturerId: number;
+  lecturer: ILecturer;
+}
+
+export interface ILecturer {
+  id: string;
+  first_name: string;
+  last_name: string;
+  phone_number: string;
+  profile_image: string;
 }

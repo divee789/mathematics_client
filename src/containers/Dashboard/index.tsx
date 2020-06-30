@@ -53,7 +53,6 @@ const Dashboard = (props: any) => {
               <div className="sidenav-list">
                 <NavLink to={`${url}/overview`}>Overview</NavLink>
                 <NavLink to={`${url}/courses`}>Courses</NavLink>
-                <NavLink to={`${url}/levels`}>Register courses</NavLink>
                 <NavLink to={`${url}/department`}>Department</NavLink>
                 <NavLink to={`${url}/settings`}>Settings</NavLink>
                 <a href="#" onClick={logOutHandler}>

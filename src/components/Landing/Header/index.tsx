@@ -15,7 +15,7 @@ const Header = () => {
           deleniti asperiores quae reiciendis blanditiis laborum, enim voluptas
         </p>
         <div className="get-started">
-          <button>Get Started</button>
+          <button>GET STARTED</button>
         </div>
         <img src={back} className="header_image" />
       </section>
