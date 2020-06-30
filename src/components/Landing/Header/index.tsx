@@ -1,10 +1,11 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 import back from "../../../assets/images/bg.png";
 
 import "./index.scss";
 
-const Header = () => {
+const Header = (props) => {
   return (
     <>
       <section className="solution_header">
@@ -14,7 +15,12 @@ const Header = () => {
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi
           deleniti asperiores quae reiciendis blanditiis laborum, enim voluptas
         </p>
-        <div className="get-started">
+        <div
+          className="get-started"
+          onClick={() => {
+            props.history.push("/auth/login");
+          }}
+        >
           <button>GET STARTED</button>
         </div>
         <img src={back} className="header_image" />
@@ -23,4 +29,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default withRouter(Header);

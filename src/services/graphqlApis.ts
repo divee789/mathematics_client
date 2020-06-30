@@ -13,8 +13,9 @@ export default class GraphQl {
   public client: ApolloClient<unknown>;
 
   constructor() {
+    console.log(process.env);
     const httpLink = createHttpLink({
-      uri: "http://localhost:3100/graphql",
+      uri: process.env.REACT_APP_SERVER_URL,
     });
     const authLink = setContext((_, { headers }) => {
       const token = localStorage.getItem("access_token");

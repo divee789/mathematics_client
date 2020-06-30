@@ -10,6 +10,13 @@
     font-weight: 800;
     margin-bottom: 0;
     padding: 0;
+
+    @media screen and (max-width: 600px) {
+      font-size: 33px;
+      margin: 0 auto;
+      margin-top: 30%;
+      width: 90%;
+    }
   }
 
   .h2 {
@@ -19,6 +26,11 @@
     margin-bottom: 2rem;
     font-weight: 100;
     font-family: firma;
+
+    @media screen and (max-width: 600px) {
+      font-size: 20px;
+      margin-top: 15px;
+    }
   }
 
   .solution_text {
@@ -26,10 +38,21 @@
     margin: 0 auto;
     font-size: 15px;
     opacity: 0.8;
+
+    @media screen and (max-width: 600px) {
+      width: 70%;
+      font-size: 14px;
+    }
   }
 
   .get-started {
     margin: 2rem 0;
+    @media screen and (max-width: 600px) {
+      width: 70%;
+      font-size: 14px;
+      margin-left: auto;
+      margin-right: auto;
+    }
     button {
       font-weight: 600;
       font-family: firma;

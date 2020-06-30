@@ -13,10 +13,19 @@
   }
   h1 {
     font-size: 36px;
+    @media screen and (max-width: 600px) {
+      font-size: 28px;
+      width: 80%;
+      margin: 4rem auto;
+    }
   }
   p {
     width: 40%;
     margin: 0 auto;
+    @media screen and (max-width: 600px) {
+      font-size: 15px;
+      width: 80%;
+    }
   }
   div {
     position: relative;
@@ -30,6 +39,10 @@
     margin: 4rem auto;
     border-radius: 57px;
     padding: 0.7rem;
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+      width: 90%;
+    }
 
     input {
       width: 60%;
@@ -42,8 +55,11 @@
       border-color: initial;
       border-image: initial;
       outline: none;
+      @media screen and (max-width: 600px) {
+        width: 100%;
+        padding: 1rem 0.75rem;
+      }
     }
-
     button {
       width: 30%;
       margin: 0px;
@@ -51,6 +67,9 @@
       color: white;
       border-radius: 57px;
       cursor: pointer;
+      @media screen and (max-width: 600px) {
+        width: 100%;
+      }
     }
   }
 }

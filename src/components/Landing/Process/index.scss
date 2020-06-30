@@ -6,8 +6,20 @@
   justify-content: space-between;
   align-items: center;
 
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+
   div {
     width: 40%;
+    @media screen and (max-width: 600px) {
+      width: 90%;
+
+      img {
+        width: 100%;
+        margin-top: 4rem;
+      }
+    }
     h1 {
       font-size: 36px;
       font-weight: 700;
@@ -30,9 +42,21 @@
   justify-content: space-between;
   align-items: center;
 
+  @media screen and (max-width: 600px) {
+    flex-direction: column-reverse;
+  }
+
   .first_item,
   .second_item {
     width: 40%;
+    @media screen and (max-width: 600px) {
+      width: 90%;
+
+      .imgr {
+        width: 100%;
+        margin-top: 4rem;
+      }
+    }
     h1 {
       font-size: 36px;
       font-weight: 700;

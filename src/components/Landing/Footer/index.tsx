@@ -17,8 +17,8 @@ const Footer = () => (
         <div>
           <h4>Contact Us</h4>
           <ul>
-            <li>09018913201</li>
-            <li>divee789@gmail.com</li>
+            <li>090001001</li>
+            <li>mathematics@uniben.com</li>
           </ul>
         </div>
         <div>
@@ -42,9 +42,9 @@ const Footer = () => (
         <div>
           <h4>Address</h4>
           <ul>
-            <li>13,Peace avenue</li>
-            <li>The Bells,</li>
-            <li>Ota,Ogun state,</li>
+            <li>UNIBEN</li>
+            <li>Ugbowo, Benin City</li>
+            <li>Edo State.</li>
             <li>Nigeria</li>
           </ul>
         </div>

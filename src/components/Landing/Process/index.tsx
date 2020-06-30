@@ -47,7 +47,7 @@ const Process = () => (
 
     <section className="second_process">
       <div className="first_item">
-        <img src={image3} alt="education is power" />
+        <img src={image3} alt="education is power" className="imgr" />
       </div>
       <div className="second_item">
         <p>Easier Decision making for</p>

@@ -11,7 +11,7 @@ const Staff = () => (
         below and we will contact you within 24 hours.
       </p>
       <div>
-        <input type="email" />
+        <input type="email" placeholder="myemail@gmail.com" />
         <button>SEND</button>
       </div>
     </section>
