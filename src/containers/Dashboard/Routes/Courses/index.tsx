@@ -12,46 +12,70 @@ const Courses = () => {
       level,
     },
   });
-  let content: JSX.Element;
+  let content: JSX.Element = null;
 
   if (loading)
     content = (
       <p style={{ textAlign: "center", marginTop: 30 }}>Loading Courses...</p>
     );
 
-  if (error) console.log(error);
-  content = (
-    <p style={{ textAlign: "center", marginTop: 30 }}>
-      There has been an error fetching the courses, please refresh the page.
-    </p>
-  );
+  if (error) {
+    console.log(error);
+    content = (
+      <p style={{ textAlign: "center", marginTop: 30 }}>
+        There has been an error fetching the courses, please refresh the page.
+      </p>
+    );
+  }
 
-  if (data) {
+  if (data?.coursesByLevel.length > 0) {
     console.log(data);
     content = data.coursesByLevel.map((course: ICourse) => (
       <div key={course.code} className="course_card">
-        <p>
-          {course.lecturer
-            ? `${course.lecturer.first_name} ${course.lecturer.last_name}`
-            : "No Lecturer Assigned"}
-        </p>
-        <p>{course.code}</p>
-        <p>{course.semester}</p>
-        <p>{course.title}</p>
-        <p>{course.credit_load}</p>
+        <div>
+          <p>
+            CREDIT_LOAD: <span>{course.credit_load}</span>
+          </p>
+          <p>
+            CODE: <span>{course.code}</span>
+          </p>
+          <p>
+            LECTURER:
+            <span>
+              {course.lecturer
+                ? `${course.lecturer.first_name} ${course.lecturer.last_name}`
+                : "No Lecturer Assigned"}
+            </span>
+          </p>
+        </div>
+        <div>
+          <p>
+            SEMESTER: <span>{course.semester}</span>
+          </p>
+          <p>
+            TITLE: <span>{course.title}</span>
+          </p>
+        </div>
       </div>
     ));
+  } else {
+    content = (
+      <p style={{ textAlign: "center", marginTop: 70 }}>
+        {" "}
+        There is nothing to show here{" "}
+      </p>
+    );
   }
 
   return (
     <>
-      <section>
+      <section className="courses_section">
         <div className="navbar">
           <p className="title">Courses</p>
         </div>
         <div className="container">
           <div className="scroll">
-            <div className="">
+            <div className="choice">
               <p
                 onClick={() => {
                   setLevel(100);
@@ -68,20 +92,20 @@ const Courses = () => {
               </p>
               <p
                 onClick={() => {
-                  setLevel(100);
+                  setLevel(300);
                 }}
               >
                 300L
               </p>
               <p
                 onClick={() => {
-                  setLevel(100);
+                  setLevel(400);
                 }}
               >
                 400L
               </p>
             </div>
-            <div>{content}</div>
+            <div className="card_container">{content}</div>
           </div>
         </div>
       </section>

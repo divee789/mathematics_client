@@ -53,6 +53,7 @@ export const GET_LEVEL_COURSES = gql`
       credit_load
       title
       semester
+      level
       lecturer {
         id
         first_name
