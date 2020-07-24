@@ -1,18 +1,32 @@
 import React, { useState } from "react";
-import { useQuery } from "@apollo/react-hooks";
-import { GET_LEVEL_COURSES } from "../../../../services/queries";
+import { useQuery, useMutation } from "@apollo/react-hooks";
+import {
+  GET_LEVEL_COURSES,
+  REGISTER_COURSE,
+} from "../../../../services/queries";
 import { ICourse } from "../../../../interfaces";
 
 import "./index.scss";
 
 const Courses = () => {
   const [level, setLevel] = useState(100);
+  const [addCourse] = useMutation(REGISTER_COURSE);
   const { loading, error, data } = useQuery(GET_LEVEL_COURSES, {
     variables: {
       level,
     },
   });
   let content: JSX.Element = null;
+
+  const registerCourse = async (course_id: string) => {
+    try {
+      await addCourse({ variables: { id: course_id } });
+      alert("Course registered successfully");
+    } catch (error) {
+      console.log(error);
+      alert("There has been an error registering your course");
+    }
+  };
 
   if (loading)
     content = (
@@ -29,9 +43,14 @@ const Courses = () => {
   }
 
   if (data?.coursesByLevel.length > 0) {
-    console.log(data);
     content = data.coursesByLevel.map((course: ICourse) => (
-      <div key={course.code} className="course_card">
+      <div
+        key={course.code}
+        className="course_card"
+        onClick={() => {
+          registerCourse(course.id);
+        }}
+      >
         <div>
           <p>
             CREDIT_LOAD: <span>{course.credit_load}</span>

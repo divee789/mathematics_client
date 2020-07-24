@@ -30,6 +30,42 @@ export const SIGN_UP = gql`
   }
 `;
 
+export const EDIT_PROFILE = gql`
+  mutation(
+    $first_name: String!
+    $level: Int!
+    $last_name: String!
+    $matriculation_number: String!
+    $department: String!
+  ) {
+    editProfile(
+      first_name: $first_name
+      level: $level
+      last_name: $last_name
+      matriculation_number: $matriculation_number
+      department: $department
+    ) {
+      id
+    }
+  }
+`;
+
+export const REGISTER_COURSE = gql`
+  mutation($id: ID!) {
+    addCourse(course_id: $id) {
+      message
+    }
+  }
+`;
+
+export const UNREGISTER_COURSE = gql`
+  mutation($id: ID!) {
+    removeCourse(course_id: $id) {
+      message
+    }
+  }
+`;
+
 export const GET_STUDENT = gql`
   {
     student {

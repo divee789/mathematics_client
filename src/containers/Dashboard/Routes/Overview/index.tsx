@@ -1,13 +1,37 @@
-import React from "react";
-import { useQuery } from "@apollo/react-hooks";
-import { GET_STUDENT_COURSE } from "../../../../services/queries";
+import React, { useEffect } from "react";
+import { useQuery, useMutation } from "@apollo/react-hooks";
+import {
+  GET_STUDENT_COURSE,
+  UNREGISTER_COURSE,
+} from "../../../../services/queries";
 
 import "./index.scss";
 import { ICourse } from "../../../../interfaces";
 
 const Overview = ({ student }) => {
-  const { loading, error, data } = useQuery(GET_STUDENT_COURSE);
+  const { loading, error, data, refetch } = useQuery(GET_STUDENT_COURSE);
+  const [removeCourse] = useMutation(UNREGISTER_COURSE);
   let content: JSX.Element;
+
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
+
+  const unregisterCourse = async (course_id: string) => {
+    try {
+      const isSure = window.confirm(
+        "Are you sure you want to unregister this course ?",
+      );
+      if (!isSure) {
+        return;
+      }
+      await removeCourse({ variables: { id: course_id } });
+      refetch();
+      alert("course unregistered successfully");
+    } catch (error) {
+      alert("There has been an error unregistering this course");
+    }
+  };
 
   if (loading)
     content = (
@@ -25,7 +49,13 @@ const Overview = ({ student }) => {
       data.student_courses.courses.length !== 0 ? (
         <div className="card_container">
           {data.student_courses.courses.map((course: ICourse) => (
-            <div key={course.code} className="course_card">
+            <div
+              key={course.code}
+              className="course_card"
+              onClick={() => {
+                unregisterCourse(course.id);
+              }}
+            >
               <div>
                 <div>
                   <p>COURSE CODE</p>

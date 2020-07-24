@@ -7,13 +7,18 @@ import { ApolloLink } from "apollo-link";
 import gql from "graphql-tag";
 
 import { ISignUp, IStudent, ILogIn } from "../interfaces";
-import { GET_LEVEL_COURSES, GET_STUDENT, SIGN_UP, LOG_IN } from "./queries";
+import {
+  GET_LEVEL_COURSES,
+  GET_STUDENT,
+  SIGN_UP,
+  LOG_IN,
+  REGISTER_COURSE,
+} from "./queries";
 
 export default class GraphQl {
   public client: ApolloClient<unknown>;
 
   constructor() {
-    console.log(process.env);
     const httpLink = createHttpLink({
       uri: process.env.REACT_APP_SERVER_URL,
     });
@@ -43,7 +48,6 @@ export default class GraphQl {
         }
       `,
     });
-    console.log(res);
   };
 
   signIn = async (data: ILogIn): Promise<{ token: string }> => {
@@ -72,6 +76,17 @@ export default class GraphQl {
     });
     localStorage.setItem("access_token", res.data.signUp.token);
     return res.data.signUp;
+  };
+
+  registerCourse = async (id: string): Promise<{ message: string }> => {
+    const res = await this.client.mutate({
+      mutation: REGISTER_COURSE,
+      variables: {
+        id,
+      },
+    });
+
+    return res.data.addCourse;
   };
 
   getStudent = async (): Promise<IStudent> => {
